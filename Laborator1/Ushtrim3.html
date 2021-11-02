@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <script type="text/javascript">
+         function Diferenca (){
+             debugger;
+             var nr = document.getElementById('nr').value;
+
+             if (nr > 13) {
+                 alert("Numri me i madh se 13, shfaq diferencen si dyfish:" + (nr - 13) * 2);
+             }
+             else {
+                 alert("Numri me i vogel se 13, shfaq diferencen si diference normale:" + (13 - nr) * 2);
+             }
+
+
+
+        }
+    </script>
+
+    <label>Vendos numrin:</label><input type="number" id="nr" />
+    <input type="button" onclick="Diferenca();" value="Diferenca" />
+</body>
+</html>

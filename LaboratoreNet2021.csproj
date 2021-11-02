@@ -135,6 +135,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Laborator1\Ushtrim1.html" />
+    <Content Include="Laborator1\Ushtrim2.html" />
+    <Content Include="Laborator1\Ushtrim3.html" />
+    <Content Include="Laborator1\Ushtrim4.html" />
+    <Content Include="Laborator1\UshtrimiDSH.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />

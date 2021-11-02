@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link href="../Content/bootstrap.css" rel="stylesheet" />
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <title></title>
+    <script src="../Scripts/jquery-3.0.0.js"></script>
+    <script src="../Scripts/bootstrap.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <div style="padding:10px; margin:10px;">
+        <br />
+        <div class="row">
+            <div class="col-md-6">
+                <label class="control-label">Selektoni nje punonjes</label>
+                <select id="punonjesit" class="form-control" onchange="AfishoPunonjes()">
+                    <option value="">Selektoni</option>
+                    <option value="1">Olta Dedej testy</option>
+                    <option value="2">Test1Emri TestMbiemri</option>
+                    <option value="3">Test2Emri Test2Mbiemri</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="control-label">Emri i punonjesit</label>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="control-label pull-left" id="afishimEmri"></label>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class=" control-label">Mbiemri i punonjesit</label>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="control-label pull-left" id="afishimMbiemri"></label>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class=" col-md-6">
+                        <label class="control-label">Emri i punonjesit te ri</label>
+                    </div>
+                    <div class=" col-md-6">
+                        <input type="text" class="form-control" id="newName" />
+                    </div>
+                </div>
+
+
+                <br />
+                <div class="row">
+                    <div class=" col-md-6">
+                        <label class="control-label">Mbiemri i punonjesit te ri</label>
+                    </div>
+                    <div class=" col-md-6">
+                        <input type="text" class="form-control" id="newSurname" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row text-center">
+            <br />
+            <div class="col-md-12 text-center">
+                <button id="AddPunonjes" class=" btn-success" onclick="ShtoPunonjes()">Shto punonjes</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+            function AfishoPunonjes() {
+                debugger;
+                var selectList = document.getElementById('punonjesit');
+                if ((newName.value !== null && newName.value !== "" && newName.value !== "undefined") && (newSurname.value !== null && newSurname.value !== "" && newSurname.value !== "undefined")) {
+
+                    var lbEmri = document.getElementById('afishimEmri');
+                    var lbMbiemri = document.getElementById('afishimMbiemri');
+                    var selectedOption = selectList.options[selectList.value];  //A[2,3,4] a[0]=2
+                    var textofSelectedOption = selectedOption.text.split(' ');  //Olta Dedej  b= ["Olta" "Dedej"]
+                    if (textofSelectedOption.length === 2) {
+                        lbEmri.innerHTML = textofSelectedOption[0];
+                        lbMbiemri.innerHTML = textofSelectedOption[1];
+                    }
+                    else {
+                        alert("Elementi i perzgjedhur permban nje punonjes ku emri i tij nuk perbehet nga ekzaktesisht dy pjese");
+                    }
+
+                }
+            }
+
+            function ShtoPunonjes() {
+                debugger;
+                var select = document.getElementById('punonjesit');
+                //ne js let dhe var jane e njejta gje por aktualisht let perdoret me shume se sa var
+                let newName = document.getElementById('newName');
+                let newSurname = document.getElementById('newSurname');
+
+                if ((newName.value !== null && newName.value !== "" && newName.value !== "undefined") && (newSurname.value !== null && newSurname.value !== "" && newSurname.value !== "undefined")) {
+
+                    var numberOfEmployees = select.options.length //"4" // 4
+                    var opt = document.createElement('option');
+                    opt.value = (parseInt(numberOfEmployees) + 1).toString(); //4+1 ==5 <option value="5">TestNewName TestNewSurname </option>
+                    opt.innerHTML = newName.value + " " + newSurname.value;    //TestNewName TestNewSurname
+                    select.appendChild(opt);
+                    newName.innerHTML = "";
+                    newSurname.innerHTML = "";
+                    newName.value = "";
+                    newSurname.value = "";
+                }
+
+
+
+            }
+
+
+
+
+
+    </script>
+</body>
+</html>
