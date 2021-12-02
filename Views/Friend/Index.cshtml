@@ -1,0 +1,57 @@
+﻿@model LaboratoreNet2021.Models.Laborator2.Friend
+<h2>Friend Index View</h2>
+
+<div class="row">
+    <div class="row">
+        @Html.LabelFor(i => i.FriendId, new { @class = "control-label" })
+        @Html.TextBoxFor(i => i.FriendId, new { @cass = "form-control" })
+    </div>
+
+    <div class="row">
+        @Html.LabelFor(i => i.Name, new { @class = "control-label" })
+        @Html.TextBoxFor(i => i.Name, new { @cass = "form-control" })
+    </div>
+    <div class="row">
+        @Html.LabelFor(i => i.Address, new { @class = "control-label" })
+        @Html.TextBoxFor(i => i.Address, new { @cass = "form-control" })
+
+    </div>
+    @* Ushtrimi 2 *@
+    <div class="row">
+        @Html.LabelFor(i => i.Age, new { @class = "control-label" })
+        @Html.TextBoxFor(i => i.Age, new { @cass = "form-control", @type = "number" })
+
+    </div>
+    <div class="row">
+        @Html.LabelFor(i => i.AgeRange, new { @class = "control-label" })
+        @Html.TextBoxFor(i => i.AgeRange, new { @cass = "form-control" })
+    </div>
+
+    @* Ushtrimi 3 *@
+    <div class="row">
+        @{
+            if (Model.Gender.Equals("F"))
+            {
+                @Html.LabelFor(i => i.Gender, new { @class = "control-label text-danger", })
+                @Html.TextBoxFor(i => i.Gender, new { @cass = "form-control", style = "background:red;" })
+            }
+            else
+            {
+                @Html.LabelFor(i => i.Gender, new { @class = "control-label text-success", })
+                @Html.TextBoxFor(i => i.Gender, new { @cass = "form-control text-success", style = "background:red;" })
+            }
+
+
+        }
+    </div>
+    @* Ushtrimi 4 *@
+    @{ if (Model.CloseFriend)
+        {
+            <div class="row">
+                @Html.LabelFor(i => i.CloseFriend, new { @class = "control-label" })
+                @Html.TextBoxFor(i => i.CloseFriend, new { @cass = "form-control"})
+            </div>
+        }
+    }
+
+</div>

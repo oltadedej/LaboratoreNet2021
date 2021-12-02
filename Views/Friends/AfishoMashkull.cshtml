@@ -1,0 +1,60 @@
+﻿@model LaboratoreNet2021.Models.Laborator2.Friends
+<h2>Afisho Mashkull</h2>
+
+
+@foreach (var friend in Model.MyFriends)
+{
+    //Riperdorimin Logjiken e afishimit ne viewn Index te Friends
+
+    //Ushtrim 9
+    <div class="row">
+        <h5 class="text-warning badge">My Friend details</h5>
+        <div class="row">
+            @Html.LabelFor(i => friend.FriendId, new { @class = "control-label" })
+            @Html.TextBoxFor(i => friend.FriendId, new { @cass = "form-control" })
+        </div>
+
+        <div class="row">
+            @Html.LabelFor(i => friend.Name, new { @class = "control-label" })
+            @Html.TextBoxFor(i => friend.Name, new { @cass = "form-control" })
+        </div>
+        <div class="row">
+            @Html.LabelFor(i => friend.Address, new { @class = "control-label" })
+            @Html.TextBoxFor(i => friend.Address, new { @cass = "form-control" })
+
+        </div>
+        <div class="row">
+            @Html.LabelFor(i => friend.Age, new { @class = "control-label" })
+            @Html.TextBoxFor(i => friend.Age, new { @cass = "form-control", @type = "number" })
+
+        </div>
+        <div class="row">
+            @Html.LabelFor(i => friend.AgeRange, new { @class = "control-label" })
+            @Html.TextBoxFor(i => friend.AgeRange, new { @cass = "form-control" })
+        </div>
+        <div class="row">
+            @{
+                if (friend.Gender.Equals("F"))
+                {
+                    @Html.LabelFor(i => friend.Gender, new { @class = "control-label text-danger", })
+                    @Html.TextBoxFor(i => friend.Gender, new { @cass = "form-control", style = "background:red;" })
+                }
+                else
+                {
+                    @Html.LabelFor(i => friend.Gender, new { @class = "control-label text-primary", })
+                    @Html.TextBoxFor(i => friend.Gender, new { @cass = "form-control", style = "background:blue;" })
+                }
+
+
+            }
+        </div>
+        @{ if (friend.CloseFriend)
+            {
+                <div class="row">
+                    @Html.LabelFor(i => friend.CloseFriend, new { @class = "control-label" })
+                    @Html.TextBoxFor(i => friend.CloseFriend, new { @cass = "form-control" })
+                </div>
+            }
+        }
+    </div>
+}
