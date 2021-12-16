@@ -16,7 +16,7 @@ namespace LaboratoreNet2021.Controllers.Laborator2
             //vleren qe i eshte specifikuar ne koken e metodes
 
 
-            //Ushtrimi 5
+            //Ushtrimi 2 laborator 3
             Friends friends = new Friends();
             Friend friend = new Friend()
             {
@@ -75,7 +75,7 @@ namespace LaboratoreNet2021.Controllers.Laborator2
             friend.CloseFriend = true;
             friends.MyFriends.Add(friend);
 
-            //ushtrimi 6
+            //ushtrimi 3 laborator 3
             if (take > 0)
             {
                 if (take <= friends.MyFriends.Count()) // veprime me lista, gjendet nr i elementeve te listes
@@ -115,7 +115,7 @@ namespace LaboratoreNet2021.Controllers.Laborator2
 
 
 
-        //Ushtrimi 8 dhe 9
+        //Ushtrimi 4 dhe 5 Laborator 3
 
         //per te pasur nje instance te listes te aksesushme nga cdo metode, deklarojme objektin Friends si instance te controllerit
         //ndryshe variabel globale
@@ -190,5 +190,39 @@ namespace LaboratoreNet2021.Controllers.Laborator2
 
             return View(_friends);
         }
+
+
+        //Ushtrimi 6 laborator 3
+
+       [HttpGet] public ActionResult ShtoFriend()
+        {
+            return View();
+        }
+
+
+        //Ushtrimi 6 laborator 3
+        [HttpPost]
+        public ActionResult ShtoFriend(Friend model)
+        {
+            if (model.Age <= 0)
+            {
+                ModelState.AddModelError("Age", "Mosha duhet te jete nje numer pozitiv");
+            }
+            if (ModelState.IsValid)
+            {
+                _friends.MyFriends.Add(model);
+                foreach (Friend friend in _friends.MyFriends)
+                {
+                    if (friend.Age < 18) friend.AgeRange = "Minoren";
+                    else friend.AgeRange = "Maxhoren";
+                }
+                return View("Index", _friends);
+            }
+
+
+            return View(model);
+        }
+
+
     }
 }

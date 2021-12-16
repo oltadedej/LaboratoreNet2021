@@ -177,6 +177,7 @@
     <Content Include="Views\Friends\Index.cshtml" />
     <Content Include="Views\Friends\AfishoFemer.cshtml" />
     <Content Include="Views\Friends\AfishoMashkull.cshtml" />
+    <Content Include="Views\Friends\ShtoFriend.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

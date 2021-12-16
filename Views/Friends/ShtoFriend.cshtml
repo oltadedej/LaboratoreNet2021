@@ -1,0 +1,62 @@
+﻿@model LaboratoreNet2021.Models.Laborator2.Friend
+
+<h2>ShtoFriend</h2>
+
+@* Ushtrimi 6 Laborator 3 *@
+@using (Html.BeginForm("ShtoFriend", "Friends", FormMethod.Post))
+{
+
+<div class="row">
+    <div class="row">
+        @Html.LabelFor(i => i.FriendId, new { @class = "control-label" })
+        @Html.TextBoxFor(i => i.FriendId, new { @cass = "form-control" })
+        @Html.ValidationMessageFor(i => i.FriendId, "", new { @class = "control-label text-danger" })
+    </div>
+
+    <div class="row">
+        @Html.LabelFor(i => i.Name, new { @class = "control-label" })
+        @Html.TextBoxFor(i => i.Name, new { @cass = "form-control" })
+        @Html.ValidationMessageFor(i => i.Name, "", new { @class = "control-label text-danger" })
+    </div>
+    <div class="row">
+        @Html.LabelFor(i => i.Address, new { @class = "control-label" })
+        @Html.TextBoxFor(i => i.Address, new { @cass = "form-control" })
+        @Html.ValidationMessageFor(i => i.Address, "", new { @class = "control-label text-danger" })
+    </div>
+    <div class="row">
+        @Html.LabelFor(i => i.Age, new { @class = "control-label" })
+        @* per moshen specifikojme tipin numer *@
+        @Html.TextBoxFor(i => i.Age, new { @cass = "form-control", @type = "number" })      
+        @Html.ValidationMessageFor(i => i.Age, "", new { @class = "control-label text-danger" })
+
+    </div>
+    <div class="row">
+        @Html.LabelFor(i => i.AgeRange, new { @class = "control-label" })
+        @Html.TextBoxFor(i => i.AgeRange, new { @cass = "form-control" })
+    </div>
+
+    <div class="row">
+        @Html.LabelFor(i => i.Gender, new { @class = "control-label" })
+        Femer
+        @Html.RadioButtonFor(i => i.Gender, "F")
+        Mashkull
+        @Html.RadioButtonFor(model => model.Gender, "M")
+        @Html.ValidationMessageFor(i => i.Gender, "", new { @class = "control-label text-danger" })
+        
+    </div>
+
+    <div class="row">
+        @Html.LabelFor(i => i.CloseFriend, new { @class = "control-label" })
+        @Html.RadioButtonFor(i => i.CloseFriend, true)
+    </div>
+
+    <input type="submit" value="Shto Friend" />
+
+</div>
+
+
+
+}
+
+
+
