@@ -57,9 +57,23 @@
             }
         }
     </div>
+    //Laborator 4 ushtrimi 1
+    <div class="row">
+
+        <label class="control-label"> Klikoni butonin e meposhtem per te fshire objektin ne krah </label>
+        @Html.ActionLink("Fshi Friend", "DeleteFriend", "Friends", new { friendId = friend.FriendId }, new { @class = "btn btn-danger" })
+
+    </div>
+    //Laborator 4 ushtrimi 2
+    <div class="row">
+
+        <label class="control-label"> Klikoni butonin e meposhtem per te fshire objektin ne krah </label>
+        @Html.ActionLink("Perditesoni Friend", "UpdateFriend", "Friends", new { friendId = friend.FriendId }, new { @class = "btn btn-warning" })
+
+    </div>
 }
 
- @* Ushtrimi 5 dhe 6 Laborator 3 *@
+@* Ushtrimi 5 dhe 6 Laborator 3 *@
 <div class="row">
 
     <label class="control-label"> Klikoni butonin e meposhtem per te afishuar vetem shoket e gjinise Femer</label>

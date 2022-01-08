@@ -1,0 +1,48 @@
+﻿@model LaboratoreNet2021.Models.Laborator2.Friend
+
+<h2>Fshni nje shok</h2>
+    <div class="row">
+        <div class="row">
+            @Html.LabelFor(i => i.FriendId, new { @class = "control-label" })
+            @Html.TextBoxFor(i => i.FriendId, new { @cass = "form-control" })
+        </div>
+
+        <div class="row">
+            @Html.LabelFor(i => i.Name, new { @class = "control-label" })
+            @Html.TextBoxFor(i => i.Name, new { @cass = "form-control" })
+        </div>
+        <div class="row">
+            @Html.LabelFor(i => i.Address, new { @class = "control-label" })
+            @Html.TextBoxFor(i => i.Address, new { @cass = "form-control" })
+        </div>
+        <div class="row">
+            @Html.LabelFor(i => i.Age, new { @class = "control-label" })
+            @* per moshen specifikojme tipin numer *@
+            @Html.TextBoxFor(i => i.Age, new { @cass = "form-control", @type = "number" })
+
+        </div>
+        <div class="row">
+            @Html.LabelFor(i => i.AgeRange, new { @class = "control-label" })
+            @Html.TextBoxFor(i => i.AgeRange, new { @cass = "form-control" })
+        </div>
+
+        <div class="row">
+            @Html.LabelFor(i => i.Gender, new { @class = "control-label" })
+            Femer
+            @Html.RadioButtonFor(i => i.Gender, "F")
+            Mashkull
+            @Html.RadioButtonFor(model => model.Gender, "M")
+
+        </div>
+
+        <div class="row">
+            @Html.LabelFor(i => i.CloseFriend, new { @class = "control-label" })
+            @Html.RadioButtonFor(i => i.CloseFriend, true)
+        </div>
+    </div>
+    <div class="row">
+
+        <label class="control-label"> Klikoni butonin e meposhtem per te fshire shokun </label>
+        @Html.ActionLink("Fshi Shok", "DeleteShok", "Friends", new { friendId = Model.FriendId }, new { @class = "btn btn-danger" })
+
+    </div>

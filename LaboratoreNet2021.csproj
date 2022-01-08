@@ -178,6 +178,8 @@
     <Content Include="Views\Friends\AfishoFemer.cshtml" />
     <Content Include="Views\Friends\AfishoMashkull.cshtml" />
     <Content Include="Views\Friends\ShtoFriend.cshtml" />
+    <Content Include="Views\Friends\DeleteFriend.cshtml" />
+    <Content Include="Views\Friends\UpdateFriend.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

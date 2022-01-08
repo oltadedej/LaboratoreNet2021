@@ -12,77 +12,16 @@ namespace LaboratoreNet2021.Controllers.Laborator2
         // GET: Friends
         public ActionResult Index(int take = 0, int? age = null) // athr int? ose cdo tip varabli ne C# i cili merr e nje pikepyetje nga pas tregon qe tipi lejon edhe int edhe null, nese do e kishim bool? do te thonte qe do kemi vlerat, true, false dhe null
         {
-            //kur i deklarojme parametrat ne metode dhe i japim vlere athere variablat njihen si optional, nese ne nuk i kalojme nje vlere si default marrin
-            //vleren qe i eshte specifikuar ne koken e metodes
-
-
-            //Ushtrimi 2 laborator 3
-            Friends friends = new Friends();
-            Friend friend = new Friend()
-            {
-                FriendId = Guid.NewGuid().ToString(),
-                Name = "Friend1",
-                Address = "Bulevardi Zogui i 1 Tirana",
-            };
-
-            friend.Age = 21;
-            if (friend.Age < 18) friend.AgeRange = "Minoren";
-            else friend.AgeRange = "Maxhoren";
-            friend.Gender = "F";
-            friend.CloseFriend = true;
-            friends.MyFriends.Add(friend);
-
-            //mund te riperdorni te njejten instance mjafton ta ri-deklaroni me new
-            friend = new Friend()
-            {
-                FriendId = Guid.NewGuid().ToString(),
-                Name = "Friend2",
-                Address = "Bulevardi Zogui i 1 Tirana",
-            };
-
-            friend.Age = 17;
-            if (friend.Age < 18) friend.AgeRange = "Minoren";
-            else friend.AgeRange = "Maxhoren";
-            friend.Gender = "M";
-            friend.CloseFriend = false;
-            friends.MyFriends.Add(friend);
-
-            friend = new Friend()
-            {
-                FriendId = Guid.NewGuid().ToString(),
-                Name = "Friend3",
-                Address = "Bulevardi Zogui i 1 Tirana",
-            };
-
-            friend.Age = 34;
-            if (friend.Age < 18) friend.AgeRange = "Minoren";
-            else friend.AgeRange = "Maxhoren";
-            friend.Gender = "M";
-            friend.CloseFriend = false;
-            friends.MyFriends.Add(friend);
-
-            friend = new Friend()
-            {
-                FriendId = Guid.NewGuid().ToString(),
-                Name = "Friend4",
-                Address = "Bulevardi Zogui i 1 Tirana",
-            };
-
-            friend.Age = 23;
-            if (friend.Age < 18) friend.AgeRange = "Minoren";
-            else friend.AgeRange = "Maxhoren";
-            friend.Gender = "F";
-            friend.CloseFriend = true;
-            friends.MyFriends.Add(friend);
+            //perdoret lista statike
 
             //ushtrimi 3 laborator 3
             if (take > 0)
             {
-                if (take <= friends.MyFriends.Count()) // veprime me lista, gjendet nr i elementeve te listes
+                if (take <= _friends.MyFriends.Count()) // veprime me lista, gjendet nr i elementeve te listes
                 {
                     //marrim aq elemente nga lista sa specifikon take
-                    friends.MyFriends = friends.MyFriends.Take(take).ToList();  /// Veprime me lista Mesoni LINQ duke perdorur listat ne C#, .ToList() behet konvertimi qe ta kthejme ne tipin liste
-                    return View(friends);
+                    _friends.MyFriends = _friends.MyFriends.Take(take).ToList();  /// Veprime me lista Mesoni LINQ duke perdorur listat ne C#, .ToList() behet konvertimi qe ta kthejme ne tipin liste
+                    return View(_friends);
                 }
 
                 else
@@ -97,10 +36,10 @@ namespace LaboratoreNet2021.Controllers.Laborator2
 
 
                 //filtrojme elementet sipas moshes, ku mosha duhet te jete 
-                friends.MyFriends = friends.MyFriends.Where(i => i.Age > age.Value).ToList();  /// Veprime me lista Mesoni LINQ duke perdorur listat ne C#, .ToList() behet konvertimi qe ta kthejme ne tipin liste
-                if (friends.MyFriends.Count > 0)
+                _friends.MyFriends = _friends.MyFriends.Where(i => i.Age > age.Value).ToList();  /// Veprime me lista Mesoni LINQ duke perdorur listat ne C#, .ToList() behet konvertimi qe ta kthejme ne tipin liste
+                if (_friends.MyFriends.Count > 0)
                 {
-                    return View(friends);
+                    return View(_friends);
 
                 }
                 else
@@ -108,7 +47,7 @@ namespace LaboratoreNet2021.Controllers.Laborator2
                     return Content("Nuk ka asnje friend me moshe me te madhe se sa mosha e specifikuar");
                 }
             }
-            return View(friends);
+            return View(_friends);
         }
 
 
@@ -126,7 +65,7 @@ namespace LaboratoreNet2021.Controllers.Laborator2
             MyFriends =
             {  new Friend()
             {
-                FriendId = Guid.NewGuid().ToString(),
+                FriendId = "Id1", //do i japim Id Statike per arsye sepse sa here qe therrasim Guid.NewGuid() na gjenerohet nje id e re. Ne db id jane te konfiguruara dhe nuk ndryshojne
                 Name = "Friend1",
                 Address = "Bulevardi Zogui i 1 Tirana",
                 Age = 21,
@@ -136,7 +75,7 @@ namespace LaboratoreNet2021.Controllers.Laborator2
             },
             new Friend()
             {
-                FriendId = Guid.NewGuid().ToString(),
+                FriendId = "Id2",
                 Name = "Friend2",
                 Address = "Bulevardi Zogui i 1 Tirana",
                 Age = 21,
@@ -146,7 +85,7 @@ namespace LaboratoreNet2021.Controllers.Laborator2
             },
              new Friend()
             {
-                FriendId = Guid.NewGuid().ToString(),
+                FriendId = "Id3",
                 Name = "Friend3",
                 Address = "Bulevardi Zogui i 1 Tirana",
                 Age = 21,
@@ -156,7 +95,7 @@ namespace LaboratoreNet2021.Controllers.Laborator2
             },
               new Friend()
             {
-                FriendId = Guid.NewGuid().ToString(),
+                FriendId = "Id4",
                 Name = "Friend4",
                 Address = "Bulevardi Zogui i 1 Tirana",
                 Age = 21,
@@ -194,7 +133,8 @@ namespace LaboratoreNet2021.Controllers.Laborator2
 
         //Ushtrimi 6 laborator 3
 
-       [HttpGet] public ActionResult ShtoFriend()
+        [HttpGet]
+        public ActionResult ShtoFriend()
         {
             return View();
         }
@@ -224,5 +164,93 @@ namespace LaboratoreNet2021.Controllers.Laborator2
         }
 
 
+        #region Laborator 4 
+        // Region ne C# sherben per te grupuar se bashku metoda
+
+        //Ushtrimi 1 Delete Friends.
+        //do perdoret lista statike e objekteve e krijuar ne laborator 3 ne menyre qe te kemi ID e njejta
+        //nese do kishim nje lidhje me bazen e te dhenave, kjo liste do merrej nga baza e te dhenave
+
+        [HttpGet]
+        public ActionResult DeleteFriend(string friendId)
+        {
+            var friend = _friends.MyFriends.Where(i => i.FriendId == friendId).FirstOrDefault();
+            if (friend is null) //eshte njesoj sikur te shkruajme friend==null
+            {
+                //view e configuruar nga .Net qe ben handle errors
+                return View("Error");
+
+            }
+            return View(friend);
+        }
+        public ActionResult DeleteShok(string friendId)
+        {
+            var friend = _friends.MyFriends.Where(i => i.FriendId == friendId).FirstOrDefault();
+            if (friend is null) //eshte njesoj sikur te shkruajme friend==null
+            {
+                //view e configuruar nga .Net qe ben handle errors
+                return View("Error");
+
+            }
+            _friends.MyFriends.Remove(friend);
+            return View("Index", _friends);
+        }
+
+
+        [HttpGet]
+        public ActionResult UpdateFriend(string friendId)
+        {
+            var friend = _friends.MyFriends.Where(i => i.FriendId == friendId).FirstOrDefault();
+            if (friend is null) //eshte njesoj sikur te shkruajme friend==null
+            {
+                //view e configuruar nga .Net qe ben handle errors
+                return View("Error");
+
+            }
+            return View(friend);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateFriend(Friend friendModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var friend = _friends.MyFriends.Where(i => i.FriendId == friendModel.FriendId).FirstOrDefault();
+                if (friend is null) //eshte njesoj sikur te shkruajme friend==null
+                {
+                    //view e configuruar nga .Net qe ben handle errors
+                    return View("Error");
+
+                }
+                //modifikimi mund te behet ne dy menyra
+                //1. heqim elementin e vjeter dhe shtojme te riun
+                //2. per cdo property te objektit te vjeter i japim vlere nga objekti qe marrim si parameter
+                // Nese do kemi rastin e lidhjes me bazen e te dhenave athere update menaxhohet vete nga EntityFramework, ndryshe quhet ORM (object Relation Mapper) dhe i menaxhon ORM updatin ne menyre gjenerike
+
+                //Rasti i Pare
+                _friends.MyFriends.Remove(friend);
+                _friends.MyFriends.Add(friendModel);
+
+                //Rasti i dyte
+                foreach(var item in _friends.MyFriends)
+                {
+                    if(item.FriendId == friendModel.FriendId)  //ky kushti na mundeson qe modifikimi te behet vetem per elementin qe kemi kaluar nga forma
+                    {
+                        item.Name = friendModel.Name;
+                        item.AgeRange = friendModel.AgeRange;
+                        item.CloseFriend = friendModel.CloseFriend;
+                        item.Gender = friendModel.Gender;
+                        item.Age = friendModel.Age;
+                        item.Address = friendModel.Address;
+                    }
+                }
+                return View("Index", _friends);
+            }
+            else return View(friendModel);
+        }
+
+        #endregion
+
     }
+
 }
