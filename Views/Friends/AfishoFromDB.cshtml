@@ -1,0 +1,9 @@
+﻿@model IEnumerable<LaboratoreNet2021.Friend>
+
+@foreach (var item in Model)
+{
+    //Afishim i elementeve nga Baza e te dhenave
+    @Html.LabelFor(i => item.Name);
+    @Html.TextBoxFor(i => item.Name);
+
+}

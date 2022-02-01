@@ -12,7 +12,7 @@ namespace LaboratoreNet2021.Controllers.Laborator2
 
         public ActionResult Index()
         {
-            Friend friend = new Friend()
+            LaboratoreNet2021.Models.Laborator2.Friend friend = new LaboratoreNet2021.Models.Laborator2.Friend()
             {
                 FriendId = Guid.NewGuid().ToString(), //gjenerimi i nje id ne format guid dhe me pas konvertimi ne string
                 Name = "Friend1",

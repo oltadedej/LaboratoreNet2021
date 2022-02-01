@@ -63,7 +63,7 @@ namespace LaboratoreNet2021.Controllers.Laborator2
         {
             //menyra e meposhtme shpjegon se si shtohet nje element Friend ne liste ne momentin e inizializimit te listes
             MyFriends =
-            {  new Friend()
+            {  new LaboratoreNet2021.Models.Laborator2.Friend()
             {
                 FriendId = "Id1", //do i japim Id Statike per arsye sepse sa here qe therrasim Guid.NewGuid() na gjenerohet nje id e re. Ne db id jane te konfiguruara dhe nuk ndryshojne
                 Name = "Friend1",
@@ -73,7 +73,7 @@ namespace LaboratoreNet2021.Controllers.Laborator2
                 CloseFriend = true,
                 Gender = "F"
             },
-            new Friend()
+            new LaboratoreNet2021.Models.Laborator2.Friend()
             {
                 FriendId = "Id2",
                 Name = "Friend2",
@@ -83,7 +83,7 @@ namespace LaboratoreNet2021.Controllers.Laborator2
                 CloseFriend = true,
                 Gender = "M"
             },
-             new Friend()
+             new LaboratoreNet2021.Models.Laborator2.Friend()
             {
                 FriendId = "Id3",
                 Name = "Friend3",
@@ -93,7 +93,7 @@ namespace LaboratoreNet2021.Controllers.Laborator2
                 CloseFriend = true,
                 Gender = "M"
             },
-              new Friend()
+              new LaboratoreNet2021.Models.Laborator2.Friend()
             {
                 FriendId = "Id4",
                 Name = "Friend4",
@@ -142,7 +142,7 @@ namespace LaboratoreNet2021.Controllers.Laborator2
 
         //Ushtrimi 6 laborator 3
         [HttpPost]
-        public ActionResult ShtoFriend(Friend model)
+        public ActionResult ShtoFriend(LaboratoreNet2021.Models.Laborator2.Friend model)
         {
             if (model.Age <= 0)
             {
@@ -151,7 +151,7 @@ namespace LaboratoreNet2021.Controllers.Laborator2
             if (ModelState.IsValid)
             {
                 _friends.MyFriends.Add(model);
-                foreach (Friend friend in _friends.MyFriends)
+                foreach (LaboratoreNet2021.Models.Laborator2.Friend friend in _friends.MyFriends)
                 {
                     if (friend.Age < 18) friend.AgeRange = "Minoren";
                     else friend.AgeRange = "Maxhoren";
@@ -211,7 +211,7 @@ namespace LaboratoreNet2021.Controllers.Laborator2
         }
 
         [HttpPost]
-        public ActionResult UpdateFriend(Friend friendModel)
+        public ActionResult UpdateFriend(LaboratoreNet2021.Models.Laborator2.Friend friendModel)
         {
             if (ModelState.IsValid)
             {
@@ -232,9 +232,9 @@ namespace LaboratoreNet2021.Controllers.Laborator2
                 _friends.MyFriends.Add(friendModel);
 
                 //Rasti i dyte
-                foreach(var item in _friends.MyFriends)
+                foreach (var item in _friends.MyFriends)
                 {
-                    if(item.FriendId == friendModel.FriendId)  //ky kushti na mundeson qe modifikimi te behet vetem per elementin qe kemi kaluar nga forma
+                    if (item.FriendId == friendModel.FriendId)  //ky kushti na mundeson qe modifikimi te behet vetem per elementin qe kemi kaluar nga forma
                     {
                         item.Name = friendModel.Name;
                         item.AgeRange = friendModel.AgeRange;
@@ -251,6 +251,21 @@ namespace LaboratoreNet2021.Controllers.Laborator2
 
         #endregion
 
+        [HttpGet]
+        public ActionResult AfishoFromDB()
+        {
+            //friend from db
+            var friends = new List<Friend>();
+
+            //lidhja me bazen e te dhenave
+            using (FriendsDBEntities db = new FriendsDBEntities())
+            {
+                //akesesimi i tabeles ne bazen e te dhenave
+                friends = db.Friends.ToList();
+
+            }
+            return View(friends);
+        }
     }
 
 }
